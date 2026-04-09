@@ -4,22 +4,31 @@ import Register.entity.Aluno;
 import Register.entity.Disciplina;
 import Register.repository.AlunoRepository;
 import Register.repository.DisciplinaRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
+
 
 public class AlunoService {
-    private final AlunoRepository repository;
-    private final DisciplinaRepository disciplinaRepository;
 
-    public Aluno criar(Aluno aluno) {
-        return repository.save(aluno);
+
+    // final DisciplinaRepository disciplinaRepository;
+
+    final AlunoRepository alunoRepository;
+
+    public AlunoService(AlunoRepository alunoRepository){
+        this.alunoRepository = alunoRepository;
     }
 
+    @Transactional
+    public Aluno save(Aluno aluno) {
+        return alunoRepository.save(aluno);
+    }
+/*
     public List<Aluno> listar() {
         return repository.findAll();
     }
@@ -44,4 +53,6 @@ public class AlunoService {
         aluno.getDisciplinas().add(disciplina);
         return repository.save(aluno);
     }
+    */
+
 }

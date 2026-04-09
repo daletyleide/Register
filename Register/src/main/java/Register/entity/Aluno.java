@@ -11,7 +11,7 @@ import java.util.UUID;
 import Register.entity.Disciplina;
 
 @Entity
-@Table
+@Table (name="TB_USERS")
 @NoArgsConstructor
 @AllArgsConstructor
 

@@ -4,6 +4,7 @@ import Register.dtos.UserRecordDto;
 import Register.entity.Aluno;
 import Register.services.AlunoService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -14,16 +15,24 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/alunos")
-@RequiredArgsConstructor
+
 
 public class AlunoController {
-    private final AlunoService service;
 
-    @PostMapping
-    public ResponseEntity<Aluno> saveUser(@RequestBody @Validated UserRecordDto userRecordDto) {
-        return ResponseEntity.status(HttpStatus.CREATED).body();
+
+    final  AlunoService alunoService;
+
+    public AlunoController(AlunoService alunoService){
+        this.alunoService = alunoService;
     }
 
+    @PostMapping("/alunos")
+    public ResponseEntity<Aluno> saveUser(@RequestBody @Validated UserRecordDto userRecordDto) {
+        var Aluno = new Aluno();
+        BeanUtils.copyProperties(userRecordDto, Aluno);
+        return ResponseEntity.status(HttpStatus.CREATED).body(alunoService.save(Aluno));
+    }
+/*
     @GetMapping
     public List<Aluno> listar() {
         return service.listar(); }
@@ -43,4 +52,5 @@ public class AlunoController {
     public Aluno matricular(@PathVariable Long alunoId, @PathVariable Long disciplinaId) {
         return service.matricular(alunoId, disciplinaId);
     }
+    */
 }

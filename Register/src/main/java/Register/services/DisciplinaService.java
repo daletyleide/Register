@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -18,9 +19,9 @@ public class DisciplinaService {
 
     public Disciplina criar(Disciplina d) { return repository.save(d); }
     public List<Disciplina> listar() { return repository.findAll(); }
-    public Disciplina buscar(Long id) { return repository.findById(id).orElseThrow(); }
+    public Disciplina buscar(UUID id) { return repository.findById(id).orElseThrow(); }
 
-    public Disciplina vincularProfessor(Long disciplinaId, Long professorId) {
+    public Disciplina vincularProfessor(UUID disciplinaId, UUID professorId) {
         Disciplina disciplina = buscar(disciplinaId);
         Professor professor = professorRepository.findById(professorId).orElseThrow();
         disciplina.setProfessor(professor);
