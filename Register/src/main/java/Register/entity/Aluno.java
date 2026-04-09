@@ -5,8 +5,10 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import Register.entity.Disciplina;
 
 @Entity
 @Table
@@ -15,25 +17,28 @@ import java.util.UUID;
 
 
 public class Aluno implements Serializable {
-    private static final long serialVersionUIDLONG= 1L;
+    private static final long serialVersionUID= 1L;
 
 
     @Id
     @GeneratedValue (strategy = GenerationType.AUTO)
 
 
-    private UUID userid;
+    private UUID id;
     private String nome;
     private String email;
     private String matricula;
-    private List<Disciplina> disciplinas;
+    //@OneToMany(mappedBy = "aluno", cascade = CascadeType.ALL)
+    //private List<Disciplina> disciplinas;
 
-    public UUID getUserid() {
-        return userid;
+
+
+    public UUID getId() {
+        return id;
     }
 
-    public void setUserid(UUID userid) {
-        this.userid = userid;
+    public void setId(UUID id) {
+        this.id = id;
     }
 
     public String getNome() {
@@ -61,11 +66,13 @@ public class Aluno implements Serializable {
     }
 
 
-    public List<Disciplina> getDisciplinas() {
+   /* public List<Disciplina> getDisciplinas() {
         return disciplinas;
     }
 
     public void setDisciplinas(List<Disciplina> disciplinas) {
-        this.disciplinas = disciplinas;
+        this.disciplinas = new ArrayList<>();
     }
+
+    */
 }
