@@ -1,0 +1,71 @@
+package Register.entity;
+
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
+import java.io.Serializable;
+import java.util.List;
+import java.util.UUID;
+
+@Entity
+@Table
+@NoArgsConstructor
+@AllArgsConstructor
+
+
+public class Aluno implements Serializable {
+    private static final long serialVersionUIDLONG= 1L;
+
+
+    @Id
+    @GeneratedValue (strategy = GenerationType.AUTO)
+
+
+    private UUID userid;
+    private String nome;
+    private String email;
+    private String matricula;
+    private List<Disciplina> disciplinas;
+
+    public UUID getUserid() {
+        return userid;
+    }
+
+    public void setUserid(UUID userid) {
+        this.userid = userid;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getMatricula() {
+        return matricula;
+    }
+
+    public void setMatricula(String matricula) {
+        this.matricula = matricula;
+    }
+
+
+    public List<Disciplina> getDisciplinas() {
+        return disciplinas;
+    }
+
+    public void setDisciplinas(List<Disciplina> disciplinas) {
+        this.disciplinas = disciplinas;
+    }
+}

@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: Register
+
+datasource:
+  url: jdbc:postgresql://localhost:5432/postgres
+  username: Register
+  password: daty1234
+  driver-class-name: org.postgresql.Driver
+
+devtools:
+  restart:
+    enabled: true
+
+jpa:
+  # Importante: O 'update' lê suas classes @Entity e cria/altera as tabelas no Postgres
+  hibernate:
+    ddl-auto: update
+  show-sql: true # Mostra no console o SQL que o Spring está executando
+  properties:
+    hibernate:
+      format_sql: true
+      dialect: org.hibernate.dialect.PostgreSQLDialect
